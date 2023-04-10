@@ -1,11 +1,19 @@
-import React from 'react';
+import React from "react";
 
 class Todo extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = { item: props.item };
+  }
   render(){
     return (
       <div className="Todo">
-        <input type="checkbox" id="todo0" name="todo0" value="todo0"/>
-        <lable for="todo0">Todo 컴포넌트 만들기</lable>
+        <input type="checkbox"
+         id={this.state.item.id}
+          name={this.state.item.id}
+           checked={this.state.item.done}
+           />
+        <lable id={this.state.item.id}>{this.state.item.title}</lable>
         {
           /* 
             comment here
