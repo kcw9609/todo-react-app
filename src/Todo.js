@@ -7,6 +7,7 @@ class Todo extends React.Component{
     super(props);
     this.state = { item: props.item, readOnly: true };
     this.delete = props.delete;
+    this.update = props.update;
   }
   deleteEventHandler = () => {
     this.delete(this.state.item); // 부모 props전달받은 delete()함수
@@ -27,12 +28,14 @@ class Todo extends React.Component{
     // 눌러진 key가 enter인지 확인해야함
     if(e.key === "Enter"){
       this.setState({ readOnly: true});
+      this.update(this.state.item);
     }
   }
   checkboxEventHandler = (e) => {
     const thisItem = this.state.item;
     thisItem.done = !thisItem.done;
     this.setState({item: thisItem});
+    this.update(this.state.item); //체크박스가 변경되면 저장
   }
   render(){
     const item = this.state.item;
